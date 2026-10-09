@@ -1,10 +1,10 @@
 .session-tile {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(max-content, 1fr) max-content;
   align-items: center;
-  gap: 4px 12px;
-  min-width: 0;
+  gap: 4px 14px;
+  min-width: max-content;
   padding: 12px 14px;
   border-radius: var(--radius);
   background: var(--surface-2);
@@ -53,6 +53,7 @@
 
 .session-tile-tags {
   display: flex;
+  white-space: nowrap;
   align-items: center;
   gap: 6px;
 }

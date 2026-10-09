@@ -171,13 +171,19 @@
 }
 
 .hall-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 200px);
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
-.hall-block .hall-grid {
-  grid-template-columns: repeat(auto-fit, 200px);
+/* Tiles size to their content so long prices or seat counts never spill out. */
+.hall-grid .session-tile {
+  width: max-content;
+  min-width: 220px;
+}
+
+.hall-grid .session-tile-skeleton {
+  width: 220px;
 }
 
 .movie-details dl {
