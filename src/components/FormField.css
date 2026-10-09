@@ -114,3 +114,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+/* Edge adds its own reveal/clear buttons; the field already has its own eye toggle. */
+.field-control input::-ms-reveal,
+.field-control input::-ms-clear {
+  display: none;
+}
