@@ -248,3 +248,13 @@
   font-size: 12px;
   color: var(--muted);
 }
+
+button.profile-status {
+  width: 100%;
+  text-align: left;
+  color: var(--text-2);
+}
+
+button.profile-status:hover {
+  background: rgba(245, 165, 36, 0.2);
+}
