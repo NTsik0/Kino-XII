@@ -1,0 +1,251 @@
+.profile-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+.profile-tabs button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.profile-tabs button.is-active {
+  color: #fff;
+  border-bottom-color: var(--accent);
+}
+
+.profile-tab-count {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  display: grid;
+  place-items: center;
+}
+
+.profile-tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--warning);
+}
+
+/* ---------- Personal info ---------- */
+.profile-form {
+  max-width: 560px;
+}
+
+.profile-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 22px;
+}
+
+.profile-banner.is-incomplete {
+  background: var(--warning-soft);
+  border: 1px solid rgba(245, 165, 36, 0.35);
+  color: var(--warning);
+}
+
+.profile-banner.is-complete {
+  background: var(--success-soft);
+  border: 1px solid rgba(49, 196, 108, 0.35);
+  color: var(--success);
+}
+
+.eligibility {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin: -6px 0 16px;
+}
+
+.eligibility.is-ok {
+  color: var(--success);
+}
+
+.eligibility.is-limited {
+  color: var(--warning);
+}
+
+.profile-form .btn {
+  margin-top: 8px;
+}
+
+/* ---------- Tickets ---------- */
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  margin-bottom: 20px;
+}
+
+.segmented button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.segmented button.is-active {
+  background: var(--surface-3);
+  color: #fff;
+}
+
+.segmented-count {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity 0.2s;
+}
+
+.ticket-list.is-refreshing {
+  opacity: 0.6;
+}
+
+.ticket-card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) 220px;
+  gap: 20px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+}
+
+.ticket-card.is-refunded {
+  opacity: 0.75;
+}
+
+.ticket-card-poster {
+  width: 96px;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.ticket-card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ticket-card-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.ticket-card-runtime {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--muted);
+}
+
+.ticket-status {
+  background: var(--surface-3);
+}
+
+.ticket-card-facts {
+  display: flex;
+  gap: 36px;
+  margin: 14px 0 12px;
+}
+
+.ticket-card-facts dt,
+.ticket-card-label,
+.ticket-card-seats > span:first-child {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.ticket-card-facts dd {
+  margin: 4px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ticket-card-seats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ticket-card-seats > span:first-child {
+  margin-right: 6px;
+}
+
+.ticket-card-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+  border-left: 1px dashed var(--border-strong);
+}
+
+.ticket-card-ref {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.ticket-card-total {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.ticket-card-note {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.refund-confirm p {
+  color: var(--text-2);
+  font-size: 14px;
+}
+
+.refund-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}

@@ -6,20 +6,14 @@ import SearchBar from './components/layout/SearchBar';
 import HomePage from './pages/HomePage';
 import MoviePage from './pages/MoviePage';
 import SessionsPage from './pages/SessionsPage';
+import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider } from './context/BookingContext';
 import { FilterOptionsProvider } from './context/FilterOptionsContext';
 import { ToastProvider } from './context/ToastContext';
 import './components/layout/Layout.css';
-
-function Placeholder({ title }) {
-  return (
-    <div className="container page-head">
-      <h1>{title}</h1>
-    </div>
-  );
-}
 
 // Pages whose hero sits under a transparent navbar.
 const OVERLAY_ROUTES = ['/', '/movies/:slug'];
@@ -55,11 +49,11 @@ export default function App() {
                     path="/profile"
                     element={
                       <ProtectedRoute>
-                        <Placeholder title="My Profile" />
+                        <ProfilePage />
                       </ProtectedRoute>
                     }
                   />
-                  <Route path="*" element={<Placeholder title="Page not found" />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Routes>
               </main>
               <Footer />
