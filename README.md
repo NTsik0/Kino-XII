@@ -2,7 +2,7 @@
 
 A cinema network web app built for the Redberry Bootcamp XII assignment. Visitors browse films, pick a session in one of four venues, choose seats and buy tickets. The app talks to the [Kino XII API](https://api.kinoxii.redberryinternship.ge/docs).
 
-**Live:** https://ntsik0.github.io/Kino-XII/
+**Live:** https://nikoloz-tsikaridze-redberry.vercel.app (mirror: https://ntsik0.github.io/Kino-XII/)
 
 ## Features
 
@@ -43,4 +43,6 @@ A seeded account with a complete profile and tickets in both tabs: `jane@kinoxii
 
 ## Deployment
 
-Every push to `main` runs `.github/workflows/deploy.yml`, which builds with `VITE_BASE=/<repo>/` and publishes `dist/` to the `gh-pages` branch. The build also copies `index.html` to `404.html` so deep links like `/sessions?...` load the app on GitHub Pages.
+**Vercel:** the repo is imported as a Vercel project; every push to `main` deploys it. `vercel.json` rewrites all paths to `index.html` so deep links like `/sessions?...` work.
+
+**GitHub Pages:** every push to `main` runs `.github/workflows/deploy.yml`, which builds with `VITE_BASE=/<repo>/` and publishes `dist/` to the `gh-pages` branch. The build also copies `index.html` to `404.html` so deep links like `/sessions?...` load the app on GitHub Pages.
