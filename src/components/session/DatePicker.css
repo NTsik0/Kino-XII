@@ -1,0 +1,68 @@
+.date-picker {
+  display: flex;
+  gap: 8px;
+}
+
+.date-chip {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.date-chip:hover:not(:disabled):not(.is-selected) {
+  border-color: var(--border-strong);
+  background: var(--surface-3);
+}
+
+.date-chip-weekday {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.date-chip-day {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.date-chip.is-selected {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.date-chip.is-selected .date-chip-weekday {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.date-chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.date-picker.is-compact {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.date-picker.is-compact .date-chip {
+  width: auto;
+  height: 52px;
+  border-radius: 8px;
+}
+
+.date-picker.is-compact .date-chip-weekday {
+  font-size: 10px;
+}
+
+.date-picker.is-compact .date-chip-day {
+  font-size: 15px;
+}

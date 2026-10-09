@@ -1,0 +1,111 @@
+.session-tile {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 12px;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+
+.session-tile:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #1d2340;
+}
+
+.session-tile:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.session-tile:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.session-tile.is-sold-out .session-tile-time {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.session-tile-main,
+.session-tile-side {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.session-tile-side {
+  align-items: flex-end;
+  padding-left: 12px;
+  border-left: 1px dashed var(--border-strong);
+}
+
+.session-tile-time {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.session-tile-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.session-tile-lang {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-2);
+}
+
+.session-tile-price {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.session-tile-price small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.session-tile-seats {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--success);
+  white-space: nowrap;
+}
+
+.session-tile-seats.is-low {
+  color: var(--warning);
+}
+
+.session-tile.is-sold-out .session-tile-seats {
+  color: var(--muted);
+}
+
+.session-tile-venue {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.session-tile-skeleton {
+  border-radius: var(--radius);
+}

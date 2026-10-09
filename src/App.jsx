@@ -4,8 +4,10 @@ import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
 import SearchBar from './components/layout/SearchBar';
 import HomePage from './pages/HomePage';
+import MoviePage from './pages/MoviePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
+import { BookingProvider } from './context/BookingContext';
 import { FilterOptionsProvider } from './context/FilterOptionsContext';
 import { ToastProvider } from './context/ToastContext';
 import './components/layout/Layout.css';
@@ -37,27 +39,30 @@ export default function App() {
     <ToastProvider>
       <FilterOptionsProvider>
         <AuthProvider>
-          <ScrollToTop />
-          <div className="app">
-            <Navbar overlay={overlay}>
-              <SearchBar />
-            </Navbar>
-            <main className={`app-main ${overlay ? '' : 'has-nav-offset'}`}>
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route
-                  path="/profile"
-                  element={
-                    <ProtectedRoute>
-                      <Placeholder title="My Profile" />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<Placeholder title="Page not found" />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
+          <BookingProvider>
+            <ScrollToTop />
+            <div className="app">
+              <Navbar overlay={overlay}>
+                <SearchBar />
+              </Navbar>
+              <main className={`app-main ${overlay ? '' : 'has-nav-offset'}`}>
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/movies/:slug" element={<MoviePage />} />
+                  <Route
+                    path="/profile"
+                    element={
+                      <ProtectedRoute>
+                        <Placeholder title="My Profile" />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="*" element={<Placeholder title="Page not found" />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </BookingProvider>
         </AuthProvider>
       </FilterOptionsProvider>
     </ToastProvider>
