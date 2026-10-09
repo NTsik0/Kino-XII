@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import FormField from '../FormField';
 import Icon from '../Icon';
 import { useAuth } from '../../context/AuthContext';
@@ -7,7 +7,16 @@ import { useToast } from '../../context/ToastContext';
 import useForm from '../../hooks/useForm';
 import { updateProfile } from '../../api/endpoints';
 import { todayISO } from '../../utils/format';
-import { ageFrom, compact, validateDateOfBirth, validateFullName, validateMobile } from '../../utils/validators';
+import {
+  ageFrom,
+  compact,
+  validateAvatar,
+  validateDateOfBirth,
+  validateFullName,
+  validateMobile,
+} from '../../utils/validators';
+import { initials } from '../../utils/format';
+import '../auth/Auth.css';
 
 function validate(v) {
   return compact({
@@ -41,12 +50,35 @@ export default function PersonalInfoForm() {
   const form = useForm(initial, validate);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState(null);
+  const [avatar, setAvatar] = useState(null); // a newly picked file, not yet saved
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [avatarError, setAvatarError] = useState(null);
+  const fileRef = useRef(null);
+
+  useEffect(() => {
+    if (!avatar) {
+      setAvatarPreview(null);
+      return undefined;
+    }
+    const url = URL.createObjectURL(avatar);
+    setAvatarPreview(url);
+    return () => URL.revokeObjectURL(url);
+  }, [avatar]);
+
+  const pickAvatar = (e) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    const error = validateAvatar(file);
+    setAvatarError(error);
+    setAvatar(error ? null : file);
+  };
 
   const normalize = useCallback(
     (v) => ({ ...v, fullName: v.fullName.trim(), mobileNumber: v.mobileNumber.replace(/\s+/g, '') }),
     [],
   );
-  const dirty = JSON.stringify(normalize(form.values)) !== JSON.stringify(normalize(initial));
+  const dirty = Boolean(avatar) || JSON.stringify(normalize(form.values)) !== JSON.stringify(normalize(initial));
 
   // Use the saved age once valid; preview the typed date while editing.
   const previewAge = !form.errors.dateOfBirth && form.values.dateOfBirth ? ageFrom(form.values.dateOfBirth) : user.age;
@@ -65,16 +97,21 @@ export default function PersonalInfoForm() {
     fd.append('dateOfBirth', v.dateOfBirth);
     if (v.preferredVenueId) fd.append('preferredVenueId', v.preferredVenueId);
     else fd.append('preferredVenueId', '');
+    if (avatar) fd.append('avatar', avatar);
     try {
       const saved = await updateProfile(fd);
       // Show what the server stored, not what we sent.
       setUser(saved);
       form.reset(toValues(saved));
+      setAvatar(null);
       toast.success(saved.profileComplete ? 'Profile saved. You can now book tickets.' : 'Profile saved.');
     } catch (err) {
       if (err?.cancelled) return;
-      if (err.status === 422 && err.errors) form.applyServerErrors(err.fieldErrors);
-      else setFormError(err.message);
+      if (err.status === 422 && err.errors) {
+        const { avatar: avatarMsg, ...rest } = err.fieldErrors;
+        if (avatarMsg) setAvatarError(avatarMsg);
+        form.applyServerErrors(rest);
+      } else setFormError(err.message);
     } finally {
       setSaving(false);
     }
@@ -107,6 +144,42 @@ export default function PersonalInfoForm() {
           <span>{formError}</span>
         </div>
       )}
+
+      <div className={`avatar-upload ${avatarError ? 'is-invalid' : ''}`}>
+        <button
+          type="button"
+          className="avatar-upload-thumb profile-avatar-thumb"
+          onClick={() => fileRef.current?.click()}
+          aria-label="Change avatar"
+        >
+          {avatarPreview || user.avatar ? (
+            <img src={avatarPreview || user.avatar} alt="Your avatar" />
+          ) : (
+            <span className="profile-avatar-initials">{initials(user.fullName || user.username)}</span>
+          )}
+        </button>
+        <div>
+          <button type="button" className="avatar-upload-title" onClick={() => fileRef.current?.click()}>
+            {user.avatar || avatar ? 'Change avatar' : 'Upload avatar'}
+          </button>
+          <p className="avatar-upload-hint">
+            {avatarError || (avatar ? 'New photo selected. Save changes to keep it.' : 'JPG, PNG or WEBP, up to 2MB')}
+          </p>
+          {avatar && (
+            <button type="button" className="avatar-upload-remove" onClick={() => setAvatar(null)}>
+              Cancel
+            </button>
+          )}
+        </div>
+        <input
+          ref={fileRef}
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          className="visually-hidden"
+          onChange={pickAvatar}
+          tabIndex={-1}
+        />
+      </div>
 
       <FormField
         label="Full Name"
@@ -163,7 +236,7 @@ export default function PersonalInfoForm() {
         </select>
       </FormField>
 
-      <button type="submit" className="btn btn-primary" disabled={!dirty || !form.isValid || saving}>
+      <button type="submit" className="btn btn-primary" disabled={!dirty || !form.isValid || Boolean(avatarError) || saving}>
         {saving ? (
           <>
             <span className="spinner" /> Saving…

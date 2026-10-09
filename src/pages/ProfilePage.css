@@ -249,3 +249,15 @@
   gap: 10px;
   margin-top: 22px;
 }
+
+.profile-avatar-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+}
+
+.profile-avatar-initials {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+}
