@@ -12,7 +12,7 @@ import useAsync from '../hooks/useAsync';
 import { fetchMovie, fetchMovieSessions } from '../api/endpoints';
 import { addRecentlyViewed } from '../utils/recentlyViewed';
 import { ageBlockReason } from '../utils/eligibility';
-import { longDate, money, nextDays, releaseLabel, todayISO } from '../utils/format';
+import { comingSoonLabel, longDate, money, nextDays, releaseLabel, todayISO } from '../utils/format';
 import './MoviePage.css';
 
 /** Group a venue's sessions by hall, keeping start-time order. */
@@ -86,7 +86,7 @@ export default function MoviePage() {
             <Poster src={movie.posterUrl} alt={`${movie.title} poster`} />
           </div>
           <div className="movie-hero-text">
-            <p className="movie-hero-kicker">{movie.isComingSoon ? `Coming ${releaseLabel(movie.releaseDate)}` : 'Now showing'}</p>
+            <p className="movie-hero-kicker">{movie.isComingSoon ? comingSoonLabel(movie.releaseDate, 'Opens') : 'Now showing'}</p>
             <h1>{movie.title}</h1>
             {movie.synopsis && <p className="movie-hero-synopsis">{movie.synopsis}</p>}
             <div className="hero-badges">
@@ -112,7 +112,7 @@ export default function MoviePage() {
             <EmptyState
               icon="calendar"
               title="Not on sale yet"
-              message={`${movie.title} opens on ${releaseLabel(movie.releaseDate)}. Sessions will appear here once tickets go on sale.`}
+              message={`${movie.title} is not on sale yet. Sessions will appear here once tickets go on sale.`}
               action={<NotifyButton movie={movie} className="btn btn-primary btn-sm" />}
             />
           ) : (

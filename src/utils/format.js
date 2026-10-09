@@ -76,3 +76,9 @@ export function countdown(seconds) {
   const s = Math.max(0, Math.floor(seconds));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 }
+
+/** "In cinemas 2 October" for future dates; seed data has past dates on coming soon titles. */
+export function comingSoonLabel(iso, prefix = 'In cinemas') {
+  if (!iso || iso <= todayISO()) return 'Coming soon';
+  return `${prefix} ${releaseLabel(iso)}`;
+}

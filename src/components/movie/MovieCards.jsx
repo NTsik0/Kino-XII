@@ -5,7 +5,7 @@ import Icon from '../Icon';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { notifyMe } from '../../api/endpoints';
-import { genresLabel, money, releaseLabel, runtime } from '../../utils/format';
+import { comingSoonLabel, genresLabel, money, runtime } from '../../utils/format';
 import './MovieCards.css';
 
 function Poster({ src, alt, className = '' }) {
@@ -101,7 +101,7 @@ export function ComingSoonCard({ movie }) {
         <Poster src={movie.backdropUrl || movie.posterUrl} alt="" />
       </Link>
       <div className="soon-card-body">
-        <p className="soon-card-date">In cinemas {releaseLabel(movie.releaseDate)}</p>
+        <p className="soon-card-date">{comingSoonLabel(movie.releaseDate)}</p>
         <Link to={to} className="soon-card-title">
           {movie.title}
         </Link>
