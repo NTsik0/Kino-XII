@@ -1,0 +1,382 @@
+:root {
+  --bg: #050816;
+  --bg-elev: #0a0e1f;
+  --surface: #11162a;
+  --surface-2: #181d33;
+  --surface-3: #22283f;
+  --border: #262c45;
+  --border-strong: #353c5a;
+  --text: #ffffff;
+  --text-2: #c9cce0;
+  --muted: #8a90a8;
+  --faint: #5c627c;
+  --accent: #ef3a23;
+  --accent-hover: #ff4b33;
+  --accent-soft: rgba(239, 58, 35, 0.14);
+  --success: #31c46c;
+  --success-soft: rgba(49, 196, 108, 0.14);
+  --warning: #f5a524;
+  --warning-soft: rgba(245, 165, 36, 0.12);
+  --danger: #ff4d4f;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --page-x: 120px;
+  --content-w: 1680px;
+  --nav-h: 80px;
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  min-width: 1280px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--content-w) + var(--page-x) * 2);
+  margin: 0 auto;
+  padding: 0 var(--page-x);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.section-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, opacity 0.15s, transform 0.1s;
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn-primary:disabled {
+  background: #4a4f66;
+  color: #a8acc0;
+}
+
+.btn-light {
+  background: #fff;
+  color: #0a0e1f;
+}
+
+.btn-light:hover {
+  background: #e7e8ef;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.btn-ghost:disabled {
+  opacity: 0.5;
+}
+
+.btn-outline {
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--text-2);
+}
+
+.btn-sm {
+  height: 32px;
+  padding: 0 14px;
+  font-size: 13px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.link-accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.link-accent:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Badges ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.badge-age {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.badge-format {
+  background: var(--surface-3);
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ---------- Spinner ---------- */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.spinner-lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Skeleton ---------- */
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Horizontal scroller ---------- */
+.h-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+.h-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ---------- Generic states ---------- */
+.state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  padding: 48px 24px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--muted);
+}
+
+.state-box .state-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+.state-box h3 {
+  color: var(--text);
+  font-size: 17px;
+}
+
+.state-box p {
+  max-width: 420px;
+  font-size: 14px;
+}
+
+.state-box.is-error .state-icon {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.page-loader {
+  display: grid;
+  place-items: center;
+  min-height: 60vh;
+  color: var(--muted);
+}
+
+/* ---------- Page header ---------- */
+.page-head {
+  padding: 40px 0 28px;
+}
+
+.page-head h1 {
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.page-head p {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.tooltip-host {
+  position: relative;
+}
+
+.tooltip-host[data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #000;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: none;
+  letter-spacing: 0;
+  z-index: 50;
+  pointer-events: none;
+  white-space: normal;
+}

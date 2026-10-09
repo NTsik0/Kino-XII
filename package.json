@@ -1,0 +1,29 @@
+{
+  "name": "kino-xii",
+  "version": "1.0.0",
+  "description": "Kino XII cinema network - Redberry Bootcamp XII assignment",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/spa-fallback.js",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NTsik0/kino-xii.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NTsik0/kino-xii/issues"
+  },
+  "homepage": "https://github.com/NTsik0/kino-xii#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "vite": "^5.4.21"
+  },
+  "private": true,
+  "type": "module"
+}

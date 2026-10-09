@@ -1,0 +1,116 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.field-control {
+  position: relative;
+}
+
+.field-control input,
+.field-control select {
+  width: 100%;
+  height: 40px;
+  padding: 0 64px 0 14px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-3);
+  border: 1px solid transparent;
+  color: #fff;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+  appearance: none;
+}
+
+.field-control select {
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.field-control input::placeholder {
+  color: var(--muted);
+}
+
+.field-control input:focus,
+.field-control select:focus {
+  border-color: var(--border-strong);
+  background: #262d47;
+}
+
+.field-control input:disabled,
+.field-control input[readonly] {
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+.field-control input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.6;
+  cursor: pointer;
+  position: absolute;
+  right: 12px;
+}
+
+.field.is-valid .field-control input,
+.field.is-valid .field-control select {
+  border-color: rgba(49, 196, 108, 0.7);
+}
+
+.field.is-invalid .field-control input,
+.field.is-invalid .field-control select {
+  border-color: var(--accent);
+}
+
+.field-adornments {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.field-adornments button {
+  pointer-events: auto;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+}
+
+.field-ok {
+  color: var(--success);
+}
+
+.field-bad {
+  color: var(--accent);
+}
+
+.field-error {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.field-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.field.is-invalid .field-label {
+  color: var(--accent);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
