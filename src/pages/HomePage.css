@@ -1,0 +1,19 @@
+.home-section {
+  padding: 36px 0 8px;
+}
+
+.home-section + .home-section .container {
+  border-top: 1px solid var(--border);
+  padding-top: 36px;
+}
+
+.home-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home-see-all {
+  font-size: 13px;
+}

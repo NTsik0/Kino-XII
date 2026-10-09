@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation, matchPath } from 'react-router-dom';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
+import SearchBar from './components/layout/SearchBar';
+import HomePage from './pages/HomePage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { FilterOptionsProvider } from './context/FilterOptionsContext';
@@ -37,10 +39,12 @@ export default function App() {
         <AuthProvider>
           <ScrollToTop />
           <div className="app">
-            <Navbar overlay={overlay} />
+            <Navbar overlay={overlay}>
+              <SearchBar />
+            </Navbar>
             <main className={`app-main ${overlay ? '' : 'has-nav-offset'}`}>
               <Routes>
-                <Route path="/" element={<Placeholder title="Home" />} />
+                <Route path="/" element={<HomePage />} />
                 <Route
                   path="/profile"
                   element={
