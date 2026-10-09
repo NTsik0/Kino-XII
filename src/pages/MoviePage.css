@@ -179,11 +179,11 @@
 /* Tiles size to their content so long prices or seat counts never spill out. */
 .hall-grid .session-tile {
   width: max-content;
-  min-width: 220px;
+  min-width: 240px;
 }
 
 .hall-grid .session-tile-skeleton {
-  width: 220px;
+  width: 240px;
 }
 
 .movie-details dl {
