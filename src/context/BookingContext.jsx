@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { useToast } from './ToastContext';
 import { ageBlockReason } from '../utils/eligibility';
+import BookingModal from '../components/booking/BookingModal';
 
 const BookingContext = createContext(null);
 
@@ -40,7 +41,19 @@ export function BookingProvider({ children }) {
 
   const value = useMemo(() => ({ openBooking, closeBooking, active }), [openBooking, closeBooking, active]);
 
-  return <BookingContext.Provider value={value}>{children}</BookingContext.Provider>;
+  return (
+    <BookingContext.Provider value={value}>
+      {children}
+      {active && (
+        <BookingModal
+          key={active.sessionId}
+          sessionId={active.sessionId}
+          initialSession={active.session}
+          onClose={closeBooking}
+        />
+      )}
+    </BookingContext.Provider>
+  );
 }
 
 export function useBooking() {
