@@ -5,6 +5,7 @@ import Navbar from './components/layout/Navbar';
 import SearchBar from './components/layout/SearchBar';
 import HomePage from './pages/HomePage';
 import MoviePage from './pages/MoviePage';
+import SessionsPage from './pages/SessionsPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { BookingProvider } from './context/BookingContext';
@@ -49,6 +50,7 @@ export default function App() {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/movies/:slug" element={<MoviePage />} />
+                  <Route path="/sessions" element={<SessionsPage />} />
                   <Route
                     path="/profile"
                     element={
