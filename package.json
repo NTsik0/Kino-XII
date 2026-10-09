@@ -4,7 +4,7 @@
   "description": "Kino XII cinema network - Redberry Bootcamp XII assignment",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/spa-fallback.js",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "repository": {
